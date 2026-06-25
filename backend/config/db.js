@@ -6,13 +6,14 @@ const pool = mysql.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: 25060,
+    port: 25060, 
     ssl: {
-        rejectUnauthorized: false 
+        rejectUnauthorized: false
     },
     waitForConnections: true,
     connectionLimit: 10,
-    queueLimit: 0
+    queueLimit: 0,
+    connectTimeout: 20000 
 });
 
 module.exports = pool.promise();
