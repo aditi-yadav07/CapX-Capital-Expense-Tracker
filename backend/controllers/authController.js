@@ -44,11 +44,15 @@ const login = async (req, res) => {
         }
 
         // 3. Ek digital pass (JWT Token) banao jo browser me safe rahega login identity ke liye
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: user.id || user.id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
         res.json({
             token,
-            user: { id: user.id, name: user.name, email: user.email }
+            user: { 
+                id: user.id, 
+                name: user.username || user.name, // Agar username ho toh wo mil jaye, varna backup name
+                email: user.email 
+            }
         });
     } catch (error) {
         res.status(500).json({ message: 'Server me error hai', error: error.message });
