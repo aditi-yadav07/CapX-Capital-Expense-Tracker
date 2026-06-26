@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const authRoutes = require('./routes/authRoutes'); // Auth routes ko import kiya
+const authRoutes = require('./routes/authRoutes'); // Auth routes 
 const transactionRoutes = require('./routes/transactionRoutes');
 const budgetRoutes = require('./routes/budgetRoutes');
 const insightRoutes = require('./routes/insightRoutes');
@@ -16,8 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/payments', paymentRoutes);
 
-// Routes ko apply kiya
-app.use('/api/auth', authRoutes); // Ab tumhare URL honge: /api/auth/register aur /api/auth/login
+// Routes 
+app.use('/api/auth', authRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/budgets', budgetRoutes);
@@ -39,6 +39,9 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: "Global Server Breakdown", error: err.message });
 });
 
-app.listen(PORT, () => {
-    console.log(`⚡ Server running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
