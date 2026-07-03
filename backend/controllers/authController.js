@@ -30,6 +30,9 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
+        // Debug Log: Check req body
+        console.log("📌 Login Attempt for:", email);
+
         const user = await User.findByEmail(email);
         if (!user) {
             return res.status(400).json({ message: 'Galat Email ya Password!' });
@@ -44,15 +47,15 @@ const login = async (req, res) => {
 
         res.json({
             token,
-            user: { 
-                id: user.id, 
-                name: user.name || user.username || "User", 
-                username: user.name || user.username || "User",
-                email: user.email 
-            }
+            user: { id: user.id, name: user.name, email: user.email }
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server me error hai', error: error.message });
+        // 🔥 CRITICAL DEBUG: Send the EXACT raw database error to the screen!
+        res.status(500).json({ 
+            message: 'Database/Query Layer Crash!', 
+            exact_error: error.message,
+            error_stack: error.stack 
+        });
     }
 };
 
