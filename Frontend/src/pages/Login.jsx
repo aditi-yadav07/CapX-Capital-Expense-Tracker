@@ -14,9 +14,13 @@ function Login() {
       localStorage.setItem('token', res.data.token);
       alert('Access Granted. System Booting... 🌐');
       navigate('/dashboard');
-    } catch (err) {
-      alert(err.response?.data?.message || 'Access Denied: Invalid Credentials');
+    }catch (err) {
+    if (err.response && err.response.data && err.response.data.exact_error) {
+        alert("💥 DATABASE CRASH DETAIL: " + err.response.data.exact_error);
+    } else {
+        alert(err.message || "Login Failed!");
     }
+}
   };
 
   // Inline styles for cyberpunk theme
