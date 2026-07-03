@@ -10,17 +10,18 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://cap-x-capital-expense-tracker.vercel.app/api/auth/login', { email, password });
+      const res = await axios.post('/api/auth/login', { email, password });
+      
       localStorage.setItem('token', res.data.token);
       alert('Access Granted. System Booting... 🌐');
       navigate('/dashboard');
-    }catch (err) {
-    if (err.response && err.response.data && err.response.data.exact_error) {
-        alert("💥 DATABASE CRASH DETAIL: " + err.response.data.exact_error);
-    } else {
-        alert(err.message || "Login Failed!");
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.exact_error) {
+          alert("💥 DATABASE CRASH DETAIL: " + err.response.data.exact_error);
+      } else {
+          alert(err.response?.data?.message || err.message || "Login Failed!");
+      }
     }
-}
   };
 
   // Inline styles for cyberpunk theme
