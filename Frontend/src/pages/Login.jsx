@@ -10,7 +10,10 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', { email, password });
+      const res = await axios.post(
+  'https://cap-x-capital-expense-tracker.vercel.app/api/auth/login',
+  { email, password }
+);
       
       localStorage.setItem('token', res.data.token);
       alert('Access Granted. System Booting... 🌐');
