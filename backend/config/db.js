@@ -1,8 +1,13 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-console.log("HOST:", process.env.DB_HOST);
-console.log("PORT:", process.env.DB_PORT);
+const dns = require("dns");
+
+dns.lookup(process.env.DB_HOST, (err, address) => {
+  console.log("DB_HOST =", process.env.DB_HOST);
+  console.log("DNS Error =", err);
+  console.log("Resolved Address =", address);
+});
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
