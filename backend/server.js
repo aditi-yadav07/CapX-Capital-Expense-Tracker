@@ -29,6 +29,19 @@ app.get('/', (req, res) => {
     res.send('Cyberpunk Budget Tracker Backend Chal Raha Hai! 🚀');
 });
 
+const dns = require("dns");
+
+app.get("/debug", (req, res) => {
+  dns.lookup(process.env.DB_HOST, (err, address) => {
+    res.json({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      dnsError: err ? err.message : null,
+      address,
+    });
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
 // GLOBAL ERROR LOGGER MIDDLEWARE
