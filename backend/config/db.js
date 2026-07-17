@@ -1,13 +1,5 @@
-const mysql = require('mysql2');
-require('dotenv').config();
-
-const dns = require("dns");
-
-dns.lookup(process.env.DB_HOST, (err, address) => {
-  console.log("DB_HOST =", process.env.DB_HOST);
-  console.log("DNS Error =", err);
-  console.log("Resolved Address =", address);
-});
+const mysql = require("mysql2");
+require("dotenv").config();
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -24,6 +16,16 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   enableKeepAlive: true,
+});
+
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error("Database Connection Failed:", err);
+    return;
+  }
+
+  console.log("✅ Connected to Aiven MySQL");
+  connection.release();
 });
 
 module.exports = pool.promise();
