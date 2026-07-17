@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
 const Insight = {
-    // Isme hum complex calculations database queries se hi nikalenge
     getFinancialSummary: async (userId) => {
         // 1. Total Income aur Expense nikalna
         const [totals] = await db.execute(
@@ -12,11 +11,11 @@ const Insight = {
             [userId]
         );
 
-        // 2. Sabse zyada kharch kis category me hua, wo nikalna
+ 
         const [topExpenseCategory] = await db.execute(
             `SELECT c.name as category_name, SUM(t.amount) as total_spent
-             FROM Transactions t
-             JOIN Categories c ON t.category_id = c.id
+             FROM transactions t
+             JOIN categories c ON t.category_id = c.id
              WHERE t.user_id = ? AND t.type = 'expense'
              GROUP BY t.category_id
              ORDER BY total_spent DESC
