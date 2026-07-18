@@ -1,45 +1,126 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap');
 
+/* =========================
+   LIGHT THEME (Default)
+========================= */
 :root {
-  --cyber-bg: #03030c;
+  --bg: #f4f8ff;
+  --text: #1a1a1a;
+  --card: #ffffff;
+  --primary: #2563eb;
+
+  --cyber-neon-cyan: #0099ff;
+  --cyber-neon-pink: #ff4da6;
+  --cyber-neon-purple: #7b2cff;
+
+  --grid: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================
+   DARK THEME
+========================= */
+body.dark {
+  --bg: #03030c;
+  --text: #ffffff;
+  --card: #101020;
+  --primary: #00f0ff;
+
   --cyber-neon-cyan: #00f0ff;
   --cyber-neon-pink: #ff007f;
   --cyber-neon-purple: #9d00ff;
-  --cyber-grid: rgba(0, 240, 255, 0.03);
+
+  --grid: rgba(0, 240, 255, 0.03);
 }
 
+/* =========================
+   BODY
+========================= */
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--cyber-bg);
-  /* Cyberpunk grid background effect */
-  background-image: 
-    linear-gradient(to right, var(--cyber-grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--cyber-grid) 1px, transparent 1px);
+
+  background-color: var(--bg);
+
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+
   background-size: 30px 30px;
-  color: #fff;
+
+  color: var(--text);
+
   font-family: 'Rajdhani', sans-serif;
   letter-spacing: 0.5px;
   min-height: 100vh;
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
-h1, h2, h3, th {
+/* =========================
+   HEADINGS
+========================= */
+h1,
+h2,
+h3,
+th {
   font-family: 'Orbitron', sans-serif;
   letter-spacing: 1.5px;
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  color: var(--text);
+
+  text-shadow: 0 0 10px var(--cyber-neon-cyan);
+
+  transition: 0.35s;
 }
 
-/* Custom Scrollbar for Cyberpunk vibe */
+/* =========================
+   LINKS
+========================= */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--cyber-neon-pink);
+}
+
+/* =========================
+   BUTTON DEFAULT
+========================= */
+button {
+  transition: 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   CYBER SCROLLBAR
+========================= */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #050515;
+  background: var(--card);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--cyber-neon-purple);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cyber-neon-pink);
+}
+
+/* =========================
+   SELECTION
+========================= */
+::selection {
+  background: var(--primary);
+  color: white;
 }
