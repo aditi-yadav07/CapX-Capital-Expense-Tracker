@@ -1,126 +1,438 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600;700&display=swap');
 
-/* =========================
-   LIGHT THEME (Default)
-========================= */
-:root {
-  --bg: #f4f8ff;
-  --text: #1a1a1a;
-  --card: #ffffff;
-  --primary: #2563eb;
+/* ================================
+   THEME VARIABLES
+================================ */
 
-  --cyber-neon-cyan: #0099ff;
-  --cyber-neon-pink: #ff4da6;
-  --cyber-neon-purple: #7b2cff;
+:root{
 
-  --grid: rgba(0, 0, 0, 0.05);
+--bg:#f4f7fb;
+--bg-secondary:#eef3fa;
+
+--card:#ffffff;
+--card-hover:#f8fbff;
+
+--text:#1f2937;
+--text-light:#6b7280;
+
+--border:#dce4ef;
+
+--primary:#2563eb;
+--primary-hover:#1d4ed8;
+
+--success:#22c55e;
+--danger:#ef4444;
+--warning:#f59e0b;
+
+--cyan:#00bfff;
+--purple:#7c3aed;
+--pink:#ff007f;
+
+--shadow:0 10px 30px rgba(0,0,0,.08);
+
+--radius:18px;
+
+--transition:.30s ease;
+
+--grid:rgba(0,0,0,.04);
+
 }
 
-/* =========================
+
+/* ================================
    DARK THEME
-========================= */
-body.dark {
-  --bg: #03030c;
-  --text: #ffffff;
-  --card: #101020;
-  --primary: #00f0ff;
+================================ */
 
-  --cyber-neon-cyan: #00f0ff;
-  --cyber-neon-pink: #ff007f;
-  --cyber-neon-purple: #9d00ff;
+body.dark{
 
-  --grid: rgba(0, 240, 255, 0.03);
+--bg:#07111f;
+
+--bg-secondary:#0c1729;
+
+--card:#111827;
+
+--card-hover:#162235;
+
+--text:#ffffff;
+
+--text-light:#b9c1d0;
+
+--border:#25344d;
+
+--primary:#00f0ff;
+
+--primary-hover:#00d0dd;
+
+--success:#00ff88;
+
+--danger:#ff3f81;
+
+--warning:#ffbb33;
+
+--cyan:#00f0ff;
+
+--purple:#9d00ff;
+
+--pink:#ff007f;
+
+--shadow:0 10px 35px rgba(0,0,0,.45);
+
+--grid:rgba(0,240,255,.03);
+
 }
 
-/* =========================
-   BODY
-========================= */
-body {
-  margin: 0;
-  padding: 0;
 
-  background-color: var(--bg);
+/* ================================
+BODY
+================================ */
 
-  background-image:
-    linear-gradient(to right, var(--grid) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+*{
 
-  background-size: 30px 30px;
+margin:0;
 
-  color: var(--text);
+padding:0;
 
-  font-family: 'Rajdhani', sans-serif;
-  letter-spacing: 0.5px;
-  min-height: 100vh;
+box-sizing:border-box;
 
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
 }
 
-/* =========================
-   HEADINGS
-========================= */
-h1,
-h2,
-h3,
-th {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 1.5px;
-  color: var(--text);
 
-  text-shadow: 0 0 10px var(--cyber-neon-cyan);
+html{
 
-  transition: 0.35s;
+scroll-behavior:smooth;
+
 }
 
-/* =========================
-   LINKS
-========================= */
-a {
-  color: var(--primary);
-  text-decoration: none;
+
+body{
+
+font-family:'Rajdhani',sans-serif;
+
+background:var(--bg);
+
+color:var(--text);
+
+transition:.35s;
+
+background-image:
+
+linear-gradient(var(--grid) 1px,transparent 1px),
+
+linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+
+background-size:40px 40px;
+
+min-height:100vh;
+
 }
 
-a:hover {
-  color: var(--cyber-neon-pink);
+
+/* ================================
+HEADINGS
+================================ */
+
+h1,h2,h3,h4,h5{
+
+font-family:'Orbitron',sans-serif;
+
+letter-spacing:1px;
+
 }
 
-/* =========================
-   BUTTON DEFAULT
-========================= */
-button {
-  transition: 0.3s ease;
+
+/* ================================
+LINKS
+================================ */
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
 }
 
-button:hover {
-  transform: translateY(-2px);
+
+/* ================================
+BUTTONS
+================================ */
+
+button{
+
+cursor:pointer;
+
+border:none;
+
+outline:none;
+
+transition:var(--transition);
+
+font-family:'Rajdhani',sans-serif;
+
 }
 
-/* =========================
-   CYBER SCROLLBAR
-========================= */
-::-webkit-scrollbar {
-  width: 6px;
+
+button:hover{
+
+transform:translateY(-2px);
+
 }
 
-::-webkit-scrollbar-track {
-  background: var(--card);
+
+button:active{
+
+transform:scale(.98);
+
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--cyber-neon-purple);
-  border-radius: 3px;
+
+/* ================================
+INPUTS
+================================ */
+
+input,
+select,
+textarea{
+
+font-family:'Rajdhani',sans-serif;
+
+font-size:16px;
+
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cyber-neon-pink);
+
+input::placeholder,
+textarea::placeholder{
+
+color:#909090;
+
 }
 
-/* =========================
-   SELECTION
-========================= */
-::selection {
-  background: var(--primary);
-  color: white;
+
+input:focus,
+select:focus,
+textarea:focus{
+
+outline:none;
+
+}
+
+
+/* ================================
+CARDS
+================================ */
+
+.card{
+
+background:var(--card);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+border:1px solid var(--border);
+
+}
+
+
+/* ================================
+TABLE
+================================ */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+th{
+
+font-weight:700;
+
+}
+
+
+td,th{
+
+padding:15px;
+
+}
+
+
+/* ================================
+SCROLLBAR
+================================ */
+
+::-webkit-scrollbar{
+
+width:7px;
+
+height:7px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+background:var(--card);
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+background:var(--primary);
+
+border-radius:20px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+
+background:var(--purple);
+
+}
+
+
+/* ================================
+SELECTION
+================================ */
+
+::selection{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+
+/* ================================
+ANIMATIONS
+================================ */
+
+.fade{
+
+animation:fade .5s;
+
+}
+
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+.glow:hover{
+
+box-shadow:
+
+0 0 15px var(--primary),
+
+0 0 35px rgba(37,99,235,.35);
+
+}
+
+
+/* ================================
+RESPONSIVE
+================================ */
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+
+.container{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+}
+
+
+@media(max-width:992px){
+
+.container{
+
+width:95%;
+
+}
+
+}
+
+
+@media(max-width:768px){
+
+body{
+
+background-size:25px 25px;
+
+}
+
+}
+
+
+@media(max-width:576px){
+
+body{
+
+font-size:15px;
+
+}
+
+h1{
+
+font-size:26px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+h3{
+
+font-size:18px;
+
+}
+
+}
+
+
+@media(max-width:400px){
+
+body{
+
+font-size:14px;
+
+}
+
 }
